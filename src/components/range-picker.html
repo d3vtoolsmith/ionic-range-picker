@@ -1,0 +1,50 @@
+<ion-grid class="range-picker" text-center>
+	<ion-row class="range-selected" *ngIf="showSelection">
+		<ion-col text-right>
+			<span class="placeholder" *ngIf="!selectedFrom">start date</span>
+			<span *ngIf="selectedFrom">{{ selectedFrom.date | date:'EEE, MMM d' }}</span>
+		</ion-col>
+		<ion-col col-1 text-center>
+			—
+		</ion-col>
+		<ion-col text-left>
+			<span class="placeholder" *ngIf="!selectedTo">end date</span>
+			<span *ngIf="selectedTo">{{ selectedTo.date | date:'EEE, MMM d' }}</span>
+		</ion-col>
+	</ion-row>
+	<ng-template ngFor let-month let-i="index" [ngForOf]="monthWeeksDays">
+		<ion-row class="range-month" *ngIf="numberOfMonths === 1">
+			<ion-col>
+				{{ month.month }}
+			</ion-col>
+		</ion-row>
+		<ion-row class="range-weekdays" *ngIf="showWeekdays && i == 0">
+			<ion-col *ngFor="let weekDay of weekDays">
+				{{ weekDay }}
+			</ion-col>
+		</ion-row>
+		<ion-row class="range-month" *ngIf="numberOfMonths !== 1">
+			<ion-col>
+				{{ month.month }}
+			</ion-col>
+		</ion-row>
+		<ion-row class="range-days" *ngFor="let weekDays of month.weeks">
+			<ion-col class="range-day"
+			[class.day-selected]="day.isSelected"
+			[class.day-first]="isFromDay(day)"
+			[class.day-last]="isToDay(day)"
+			*ngFor="let day of weekDays.days"
+			(click)="dayTapped(day)">
+				<span title="{{ day | json }}"
+				 [class.day-past]="day.isPast"
+				 [class.day-na]="!day.isAvailable"
+				 [class.day-available]="day.isAvailable"
+				 [class.day-nonedge]="day.isNonEdge"
+				 [class.day-selected]="day.isSelected"
+				 [class.day-normal]="!boldDates"
+				 [hidden]="day.isEmpty">{{ day.day }}</span>
+				<br/>
+			</ion-col>
+		</ion-row>
+	</ng-template>
+</ion-grid>

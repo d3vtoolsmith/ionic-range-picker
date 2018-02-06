@@ -1,0 +1,105 @@
+range-picker {
+	.range-picker {
+		.range-selected {
+			margin: 10px 0px;
+			font-weight: bold;
+			text-transform: uppercase;
+			font-size: 1.8rem;
+			color: #444;
+			.placeholder {
+				color: #666;
+				font-size: 1.6rem;
+			}
+		}
+		.range-weekdays {
+			font-size: 1.3rem;
+			margin-top: 10px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			border-top: 2px solid #f1f1f1;
+			border-bottom: 2px solid #f1f1f1;
+			text-transform: uppercase;
+		}
+		.range-month {
+			margin-top: 10px;
+			margin-bottom: 5px;
+			font-size: 1.6rem;
+			font-weight: normal; // bold; // font-variant: small-caps;
+			text-transform: uppercase;
+			// text-transform: uppercase;
+			color: #666;
+		}
+		.range-days {
+			margin-top: 2px;
+			margin-bottom: 2px;
+			.range-day {
+				width: 32px;
+				height: 32px;
+				margin: 0px;
+				padding: 0px;
+				span {
+					color: map-get($map: $colors, $key: text);
+					font-size: 1.6rem;
+					font-weight: bold;
+					display: block;
+					height: 32px;
+					width: 32px;
+					padding-top: 5px;
+					padding-left: 10px;
+					border-radius: 16px;
+				}
+				span.day-normal {
+					font-weight: normal;
+				}
+				.day-available {}
+				.day-past {
+					color: map-get($map: $colors, $key: text-light);
+					font-weight: normal;
+				}
+				.day-selected {
+					background-color: map-get($colors, secondary);
+					color: get-color-from-bgcolor(map-get($colors, secondary));
+				}
+				.day-na {
+					color: darken($color: map-get($map: $colors, $key: text-light), $amount: 10);
+					font-weight: normal;
+				}
+				.day-na:after {
+					content: "";
+					position: absolute;
+					left: 31%;
+					top: 8px;
+					border-top: 1px solid rgba(map-get($map: $colors, $key: text-light), 0.7);
+					width: 21px;
+					transform: rotate(45deg);
+					transform-origin: 0% 0%;
+				}
+				.day-past {
+					&.day-na:after {
+						border-top: 1px solid rgba(map-get($map: $colors, $key: text-light), 0.7);
+					}
+				}
+				.day-nonedge {
+					color: lighten(map-get($map: $colors, $key: text), 40);
+					font-style: italic;
+				}
+			}
+			.range-day {
+				&.day-selected {
+					color: get-color-from-bgcolor(map-get($colors, secondary));
+					background-color: map-get($colors, secondary);
+
+					&.day-first {
+						border-top-left-radius: 16px;
+						border-bottom-left-radius: 16px;
+						padding-left: 4px;
+					}
+					&.day-last {
+						border-top-right-radius: 16px;
+						border-bottom-right-radius: 16px;
+					}
+				}
+			}
+		}
+	}
+}

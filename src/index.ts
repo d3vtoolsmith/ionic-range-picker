@@ -1,3 +1,3 @@
-export * from './my-module.module';
-export * from './components/my-component';
-export * from './providers/my-provider';
+export * from './range-picker.module';
+export * from './components/range-picker';
+// export * from './providers/my-provider';
